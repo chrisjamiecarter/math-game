@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MathGame.Maui.MainPage"
+             BackgroundImageSource="./background_image.jpg"
+             MinimumHeightRequest="400"
+             MinimumWidthRequest="800">
+
+    <ContentView>
+        <VerticalStackLayout
+            Spacing="50"
+            Padding="75">
+
+            <Label 
+                Text="Welcome to Math Game!"
+                FontSize="60"
+                HorizontalOptions="Center" />
+
+            <Label 
+                Text="Which game would you like to play?"
+                FontSize="40"
+                HorizontalOptions="Center"/>
+
+            <Grid 
+                RowDefinitions="*,150"
+                ColumnDefinitions="*,*,*,*">
+                                
+                <Button Grid.Column="0"
+                        Text="+"
+                        Clicked="OnGame_Clicked"
+                        MaximumWidthRequest="100"
+                        FontSize="60"/>
+                <Button Grid.Column="1"
+                        Text="-"
+                        Clicked="OnGame_Clicked"
+                        MaximumWidthRequest="100"
+                        FontSize="60"/>
+                <Button Grid.Column="2"
+                        Text="×"
+                        Clicked="OnGame_Clicked"
+                        MaximumWidthRequest="100"
+                        FontSize="60"/>
+                <Button Grid.Column="3"
+                        Text="÷"
+                        Clicked="OnGame_Clicked"
+                        MaximumWidthRequest="100"
+                        FontSize="60"/>
+                <Button Grid.Row="1"
+                        Grid.ColumnSpan="4"
+                        BackgroundColor="CornflowerBlue"
+                        Text="View Previous Games"
+                        Clicked="OnViewGameHistory_Clicked"
+                        MaximumWidthRequest="500"
+                        MaximumHeightRequest="70"
+                        FontSize="32"/>
+
+            </Grid>
+           
+        </VerticalStackLayout>
+    </ContentView>
+
+</ContentPage>
