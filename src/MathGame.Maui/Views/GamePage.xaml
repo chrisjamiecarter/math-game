@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MathGame.Maui.GamePage"
+             BackgroundImageSource="./background_image.jpg"
+             MinimumHeightRequest="400"
+             MinimumWidthRequest="800">
+    
+    <VerticalStackLayout
+        Padding="100"
+        Spacing="25">
+
+        <VerticalStackLayout x:Name="QuestionSection"
+            Spacing="25">
+
+            <Label 
+                x:Name="QuestionNumberLabel"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                FontSize="80"
+                TextColor="Black" />
+
+            <Label 
+                x:Name="QuestionLabel"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                FontSize="80"
+                TextColor="Black" />
+
+            <Entry 
+                x:Name="AnswerEntry"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontSize="80"
+                TextColor="Black"
+                BackgroundColor="LightSlateGrey"
+                WidthRequest="300"
+                HorizontalTextAlignment="Center"/>
+
+            <Button x:Name="AnswerSubmit"
+                    Text="Answer"
+                    Clicked="OnAnswerSubmit_Clicked"
+                    HorizontalOptions="Center"
+                    FontSize="32" 
+                    />
+
+        </VerticalStackLayout>
+        
+        <VerticalStackLayout x:Name="FeedbackSection"
+                             IsVisible="False"
+                             Spacing="50"
+                             Padding="50">
+
+            <Label x:Name="FeedbackLabel"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center" 
+                   FontSize="64" />
+
+            <Button x:Name="ContinueButton"
+                    Text="Continue"
+                    Clicked="OnContinueButton_Clicked"
+                    HorizontalOptions="Center"
+                    FontSize="32" />
+            
+        </VerticalStackLayout>
+        
+        <VerticalStackLayout x:Name="GameOverSection"
+                             IsVisible="False"
+                             Spacing="50"
+                             Padding="50">
+
+        <Label 
+            x:Name="GameOverLabel"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontSize="50" />
+
+        <Button 
+            x:Name="BackToMenuButton"
+            Text="Back to Menu"
+            Clicked="OnBackToMenuButton_Clicked"
+            HorizontalOptions="Center"
+            FontSize="32" />
+            
+        </VerticalStackLayout>
+
+    </VerticalStackLayout>
+    
+</ContentPage>
