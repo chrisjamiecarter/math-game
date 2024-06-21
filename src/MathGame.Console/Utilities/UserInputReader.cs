@@ -1,4 +1,6 @@
-﻿namespace MathGame.Console.Utilities
+﻿using MathGame.Enums;
+
+namespace MathGame.Console.Utilities
 {
     internal static class UserInputReader
     {
@@ -15,6 +17,23 @@
             };
 
             output = int.Parse(input);
+
+            return output;
+        }
+
+        internal static GameDifficulty GetGameDifficulty()
+        {
+            string? input = System.Console.ReadLine();
+            GameDifficulty output;
+
+            while (string.IsNullOrEmpty(input) || !int.TryParse(input, out _) || !Enum.IsDefined(typeof(GameDifficulty), int.Parse(input)))
+            {
+                System.Console.WriteLine("Input must be an Integer that represents the Game Difficulty option.");
+                input = System.Console.ReadLine();
+
+            };
+
+            output = (GameDifficulty)int.Parse(input);
 
             return output;
         }

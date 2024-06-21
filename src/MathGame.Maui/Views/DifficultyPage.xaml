@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MathGame.Maui.Views.DifficultyPage"
+             BackgroundImageSource="./background_image.jpg"
+             MinimumHeightRequest="400"
+             MinimumWidthRequest="800">
+    <ContentView>
+
+        <VerticalStackLayout Spacing="50"
+                             Padding="75">
+            
+            <Label Text="Choose a difficuly"
+                   FontSize="60"
+                   HorizontalOptions="Center" />
+
+            <Grid ColumnDefinitions="*,*,*"
+                  RowDefinitions="100">
+
+                <Button Grid.Column="0"
+                        Text="Easy"
+                        BackgroundColor="LightGreen"
+                        Clicked="OnEasy_Clicked"
+                        MaximumWidthRequest="200"
+                        FontSize="32"/>
+                <Button Grid.Column="1"
+                        Text="Normal"
+                        BackgroundColor="LightSteelBlue"
+                        Clicked="OnNormal_Clicked"
+                        MaximumWidthRequest="200"
+                        FontSize="32"/>
+                <Button Grid.Column="2"
+                        Text="Hard"
+                        BackgroundColor="LightCoral"
+                        Clicked="OnHard_Clicked"
+                        MaximumWidthRequest="200"
+                        FontSize="32"/>
+            </Grid>
+
+        </VerticalStackLayout>
+        
+    </ContentView>
+</ContentPage>

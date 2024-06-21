@@ -7,7 +7,7 @@
              MinimumWidthRequest="800">
     <ScrollView>
         <VerticalStackLayout Padding="50, 100, 50, 50">
-            <Grid ColumnDefinitions="*,*,*,*"
+            <Grid ColumnDefinitions="*,*,*,*, *"
                   RowDefinitions="50">
                 <Label Grid.Column="0" 
                        Text="Date" 
@@ -16,35 +16,37 @@
                        Text="Type" 
                        FontSize="32" />
                 <Label Grid.Column="2" 
+                       Text="Difficulty" 
+                       FontSize="32" />
+                <Label Grid.Column="3" 
                        Text="Score" 
                        FontSize="32" />
             </Grid>
             <CollectionView x:Name="GamesCollection">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid ColumnDefinitions="*,*,*,*"
+                        <Grid ColumnDefinitions="*,*,*,*,*"
                               RowDefinitions="50">
 
-                            <Label
-                                Grid.Column="0"
-                                Text="{Binding DatePlayed, StringFormat='{0:d}'}"
-                                FontSize="32" />
-                            <Label
-                                Grid.Column="1"
-                                Text="{Binding Type}"
-                                FontSize="32" />
-                            <Label
-                                Grid.Column="2"
-                                Text="{Binding Score}"
-                                FontSize="32" />
-                            <ImageButton
-                                x:Name="DeleteButton"
-                                Source="ic_delete_black_48dp.png"
-                                Grid.Column="3"
-                                Clicked="OnDeleteButton_Clicked"
-                                BindingContext="{Binding Id}"
-                                MinimumHeightRequest="40"
-                                MaximumWidthRequest="70"/>
+                            <Label Grid.Column="0"
+                                   Text="{Binding DatePlayed, StringFormat='{0:d}'}"
+                                   FontSize="32" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding Type}"
+                                   FontSize="32" />
+                            <Label Grid.Column="2"
+                                   Text="{Binding Difficulty}"
+                                   FontSize="32" />
+                            <Label Grid.Column="3"
+                                   Text="{Binding Score}"
+                                   FontSize="32" />
+                            <ImageButton x:Name="DeleteButton"
+                                         Source="ic_delete_black_48dp.png"
+                                         Grid.Column="4"
+                                         Clicked="OnDeleteButton_Clicked"
+                                         BindingContext="{Binding Id}"
+                                         MinimumHeightRequest="40"
+                                         MaximumWidthRequest="70"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
