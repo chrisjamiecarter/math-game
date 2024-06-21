@@ -22,24 +22,32 @@ public partial class GamePage : ContentPage
     private int _score = 0;
     //int _questionsRemaining = TotalQuestions;
 
-    private readonly GameType _gameType;
     private readonly List<Question> _questions;
     private int _currentQuestionIndex = 0;
 
     #endregion
     #region Constructors
 
-    public GamePage(string gameSymbol)
+    public GamePage(GameType gameType, GameDifficulty gameDifficulty)
     {
         InitializeComponent();
 
-        _gameType = GetGameType(gameSymbol);
-        _questions = QuestionEngine.GenerateQuestions(_gameType, TotalQuestions);
+        Type = gameType;
+        Difficulty = gameDifficulty;
+
+        _questions = QuestionEngine.GenerateQuestions(Type, Difficulty);
                 
-        Title = $"Math Game: {_gameType}";
+        Title = $"Math Game: {Type} - {Difficulty}";
 
         ShowNextQuestion();
 	}
+
+    #endregion
+    #region Properties
+
+    public GameDifficulty Difficulty { get; }
+    
+    public GameType Type { get; }
 
     #endregion
     #region Event Handlers
@@ -121,20 +129,9 @@ public partial class GamePage : ContentPage
         {
             DatePlayed = DateTime.Now,
             Score = _score,
-            Type = _gameType
+            Type = Type,
+            Difficulty = Difficulty
         });
-    }
-
-    private static GameType GetGameType(string gameType)
-    {
-        return gameType switch
-        {
-            "+" => GameType.Addition,
-            "-" => GameType.Subtraction,
-            "×" => GameType.Multiplication,
-            "÷" => GameType.Division,
-            _ => throw new ArgumentException($"Unsupported game type: {gameType}")
-        };
     }
         
     #endregion

@@ -17,6 +17,8 @@ namespace MathGame.Models
 
         public DateTime DatePlayed { get; set; }
 
+        public GameDifficulty Difficulty { get; set; }
+
         #endregion
     }
 }

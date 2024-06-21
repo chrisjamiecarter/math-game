@@ -20,14 +20,23 @@ namespace MathGame.Console.Models
             int score = 0;
 
             // TODO: Implement difficulty settings (enum, max values).
-            int questionCount = 5;
+            System.Console.Clear();
+            System.Console.WriteLine($"{gameType} game");
+            System.Console.WriteLine("--------------------");
 
-            List<Question> questions = QuestionEngine.GenerateQuestions(gameType, questionCount);
+            System.Console.WriteLine("Please select a difficulty: ");
+            System.Console.WriteLine("1 - Easy ");
+            System.Console.WriteLine("2 - Normal ");
+            System.Console.WriteLine("3 - Hard ");
+            
+            var gameDifficulty = UserInputReader.GetGameDifficulty();
+                        
+            List<Question> questions = QuestionEngine.GenerateQuestions(gameType, gameDifficulty);
                                    
             foreach (Question question in questions)
             {
                 System.Console.Clear();
-                System.Console.WriteLine($"{gameType} game");
+                System.Console.WriteLine($"{gameType} game: {gameDifficulty}");
                 System.Console.WriteLine("--------------------");
 
                 System.Console.WriteLine(question);
@@ -55,7 +64,8 @@ namespace MathGame.Console.Models
             {
                 DatePlayed = DateTime.Now,
                 Score = score,
-                Type = gameType
+                Type = gameType,
+                Difficulty = gameDifficulty
             });
         }
     }

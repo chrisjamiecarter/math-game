@@ -7,23 +7,19 @@
              MinimumWidthRequest="800">
 
     <ContentView>
-        <VerticalStackLayout
-            Spacing="50"
-            Padding="75">
+        <VerticalStackLayout Spacing="50"
+                             Padding="75">
 
-            <Label 
-                Text="Welcome to Math Game!"
-                FontSize="60"
-                HorizontalOptions="Center" />
+            <Label Text="Welcome to Math Game!"
+                   FontSize="60"
+                   HorizontalOptions="Center" />
 
-            <Label 
-                Text="Which game would you like to play?"
-                FontSize="40"
-                HorizontalOptions="Center"/>
+            <Label Text="Which game would you like to play?"
+                   FontSize="40"
+                   HorizontalOptions="Center"/>
 
-            <Grid 
-                RowDefinitions="*,150"
-                ColumnDefinitions="*,*,*,*">
+            <Grid ColumnDefinitions="*,*,*,*"
+                  RowDefinitions="*,150">
                                 
                 <Button Grid.Column="0"
                         Text="+"
