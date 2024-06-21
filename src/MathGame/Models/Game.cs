@@ -1,6 +1,7 @@
-﻿using SQLite;
+﻿using MathGame.Enums;
+using SQLite;
 
-namespace MathGame.Maui.Models
+namespace MathGame.Models
 {
     [Table("Game")]
     public class Game
@@ -9,9 +10,9 @@ namespace MathGame.Maui.Models
 
         [PrimaryKey, AutoIncrement, Column("Id")]
         public int Id { get; set; }
-        
-        public GameOperation Type { get; set; }
-        
+
+        public GameType Type { get; set; }
+
         public int Score { get; set; }
 
         public DateTime DatePlayed { get; set; }

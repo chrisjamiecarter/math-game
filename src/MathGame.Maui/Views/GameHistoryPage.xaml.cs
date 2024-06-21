@@ -1,6 +1,3 @@
-using System.Security.AccessControl;
-using MathGame.Maui.Models;
-
 namespace MathGame.Maui;
 
 public partial class GameHistoryPage : ContentPage
@@ -20,12 +17,12 @@ public partial class GameHistoryPage : ContentPage
 		var button = (ImageButton)sender;
 		var id = (int)button.BindingContext;
 
-        App.GameRepository.DeleteGame(id);
+        App.DataManager.DeleteGame(id);
 		RefreshGameCollection();
     }
 
 	private void RefreshGameCollection()
 	{
-        GamesCollection.ItemsSource = App.GameRepository.GetGames();
+        GamesCollection.ItemsSource = App.DataManager.GetGames();
     }
 }

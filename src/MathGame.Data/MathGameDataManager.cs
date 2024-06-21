@@ -1,18 +1,18 @@
-﻿using MathGame.Maui.Models;
+﻿using MathGame.Models;
 using SQLite;
 
-namespace MathGame.Maui.Data
+namespace MathGame.Data
 {
-    public class GameRepository
+    public class MathGameDataManager
     {
         #region Variables
-        
-        private string _filePath;
-        
+
+        private readonly string _filePath;
+
         #endregion
         #region Constructors
 
-        public GameRepository(string filePath)
+        public MathGameDataManager(string filePath)
         {
             _filePath = filePath;
             Initialise();
@@ -63,7 +63,7 @@ namespace MathGame.Maui.Data
 
         #endregion
         #region Methods: Public - Delete
-        
+
         public void DeleteGame(int id)
         {
             using (var connection = new SQLiteConnection(_filePath))
