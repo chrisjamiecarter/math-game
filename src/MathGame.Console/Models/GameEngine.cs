@@ -1,73 +1,40 @@
 ﻿using MathGame.Console.Utilities;
+using MathGame.Data;
+using MathGame.Enums;
+using MathGame.Logic;
+using MathGame.Models;
 
 namespace MathGame.Console.Models
 {
     internal class GameEngine
     {
-        internal enum GameStatus
+        internal readonly MathGameDataManager _dataManager;
+
+        internal GameEngine(MathGameDataManager dataManager)
         {
-            Started,
-            Stopped
+            _dataManager = dataManager;
         }
-
-        internal GameStatus Status;
-
-        public GameEngine()
-        {
-            Status = GameStatus.Started;
-        }
-
-        internal void PerformOption(string option)
-        {
-            switch (option)
-            {
-                case "v":
-                    Helper.DisplayGameHistory("Games History");
-                    break;
-                case "a":
-                    AdditionGame("Addition Game");
-                    break;
-                case "s":
-                    SubtractionGame("Subtraction Game");
-                    break;
-                case "m":
-                    MultiplicationGame("Multiplication Game");
-                    break;
-                case "d":
-                    DivisionGame("Division Game");
-                    break;
-                case "q":
-                    Status = GameStatus.Stopped;
-                    break;
-                default:
-                    System.Console.WriteLine("Invalid option selected. Press any key to continue.");
-                    System.Console.ReadLine();
-                    break;
-            }
-        }
-
-        internal static void AdditionGame(string message)
+        
+        internal void PlayGame(GameType gameType)
         {
             int score = 0;
+
+            // TODO: Implement difficulty settings (enum, max values).
             int questionCount = 5;
 
-            List<int[]> numbers = Helper.GetAdditionNumbers(questionCount);
-
-            for (int i = 0; i < 5; i++)
+            List<Question> questions = QuestionEngine.GenerateQuestions(gameType, questionCount);
+                                   
+            foreach (Question question in questions)
             {
                 System.Console.Clear();
-                System.Console.WriteLine(message);
+                System.Console.WriteLine($"{gameType} game");
                 System.Console.WriteLine("--------------------");
 
-                var firstNumber = numbers[i][0];
-                var secondNumber = numbers[i][1];
+                System.Console.WriteLine(question);
 
-                System.Console.WriteLine($"{firstNumber} + {secondNumber} = ?");
+                var userAnswer = UserInputReader.GetInt();
 
-                var result = firstNumber + secondNumber;
-                var answer = UserInputReader.GetInt();
-
-                if (answer == result)
+                if (userAnswer == question.Answer)
                 {
                     System.Console.WriteLine("Correct!");
                     score++;
@@ -84,125 +51,12 @@ namespace MathGame.Console.Models
             System.Console.WriteLine($"Game over. Your final score is {score}. Press any key to go back to the main menu.");
             System.Console.ReadLine();
 
-            Helper.AddGameHistory(GameType.Addition, score);
-        }
-
-        internal static void SubtractionGame(string message)
-        {
-            int score = 0;
-            int questionCount = 5;
-
-            List<int[]> numbers = Helper.GetSubtractionNumbers(questionCount);
-
-            for (int i = 0; i < 5; i++)
+            _dataManager.InsertGame(new Game
             {
-                System.Console.Clear();
-                System.Console.WriteLine(message);
-                System.Console.WriteLine("--------------------");
-
-                var firstNumber = numbers[i][0];
-                var secondNumber = numbers[i][1];
-
-                System.Console.WriteLine($"{firstNumber} - {secondNumber} = ?");
-
-                var result = firstNumber - secondNumber;
-                var answer = UserInputReader.GetInt();
-
-                if (answer == result)
-                {
-                    System.Console.WriteLine("Correct!");
-                    score++;
-                }
-                else
-                {
-                    System.Console.WriteLine("Incorrect...");
-                }
-
-                System.Console.WriteLine("Press any key for the next question.");
-                System.Console.ReadLine();
-            }
-
-            System.Console.WriteLine($"Game over. Your final score is {score}");
-            Helper.AddGameHistory(GameType.Subtraction, score);
+                DatePlayed = DateTime.Now,
+                Score = score,
+                Type = gameType
+            });
         }
-
-        internal static void MultiplicationGame(string message)
-        {
-            int score = 0;
-            int questionCount = 5;
-
-            List<int[]> numbers = Helper.GetMultiplicationNumbers(questionCount);
-
-            for (int i = 0; i < questionCount; i++)
-            {
-                System.Console.Clear();
-                System.Console.WriteLine(message);
-                System.Console.WriteLine("--------------------");
-
-                var firstNumber = numbers[i][0];
-                var secondNumber = numbers[i][1];
-
-                System.Console.WriteLine($"{firstNumber} * {secondNumber} = ?");
-
-                var result = firstNumber * secondNumber;
-                var answer = UserInputReader.GetInt();
-
-                if (answer == result)
-                {
-                    System.Console.WriteLine("Correct!");
-                    score++;
-                }
-                else
-                {
-                    System.Console.WriteLine("Incorrect...");
-                }
-
-                System.Console.WriteLine("Press any key for the next question.");
-                System.Console.ReadLine();
-            }
-
-            System.Console.WriteLine($"Game over. Your final score is {score}");
-            Helper.AddGameHistory(GameType.Multiplication, score);
-        }
-
-        internal static void DivisionGame(string message)
-        {
-            int score = 0;
-            int questionCount = 5;
-
-            List<int[]> numbers = Helper.GetDivisionNumbers(questionCount);
-
-            for (int i = 0; i < questionCount; i++)
-            {
-                System.Console.Clear();
-                System.Console.WriteLine(message);
-                System.Console.WriteLine("--------------------");
-
-                var firstNumber = numbers[i][0];
-                var secondNumber = numbers[i][1];
-
-                System.Console.WriteLine($"{firstNumber} / {secondNumber} = ?");
-
-                var result = firstNumber / secondNumber;
-                var answer = UserInputReader.GetInt();
-
-                if (answer == result)
-                {
-                    System.Console.WriteLine("Correct!");
-                    score++;
-                }
-                else
-                {
-                    System.Console.WriteLine("Incorrect...");
-                }
-
-                System.Console.WriteLine("Press any key for the next question.");
-                System.Console.ReadLine();
-            }
-
-            System.Console.WriteLine($"Game over. Your final score is {score}");
-            Helper.AddGameHistory(GameType.Division, score);
-        }
-
     }
 }

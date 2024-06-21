@@ -1,6 +1,6 @@
-﻿namespace MathGame.Console.Models
+﻿namespace MathGame.Enums
 {
-    internal enum GameType
+    public enum GameType
     {
         Addition,
         Subtraction,

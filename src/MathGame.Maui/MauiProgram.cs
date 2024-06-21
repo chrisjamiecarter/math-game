@@ -1,4 +1,4 @@
-﻿using MathGame.Maui.Data;
+﻿using MathGame.Data;
 using Microsoft.Extensions.Logging;
 
 namespace MathGame.Maui
@@ -21,7 +21,7 @@ namespace MathGame.Maui
                     fonts.AddFont("Montserrat-SemiBold.ttf", "MontserratSemiBold");
                 })
                 .Services.AddSingleton(s =>
-                    ActivatorUtilities.CreateInstance<GameRepository>(s, databaseFilePath)
+                    ActivatorUtilities.CreateInstance<MathGameDataManager>(s, databaseFilePath)
                 );
 
 #if DEBUG

@@ -1,16 +1,16 @@
-﻿using MathGame.Maui.Data;
+﻿using MathGame.Data;
 
 namespace MathGame.Maui
 {
     public partial class App : Application
     {
-        public static GameRepository GameRepository { get; private set; }
+        public static MathGameDataManager DataManager { get; private set; }
 
-        public App(GameRepository gameRepository)
+        public App(MathGameDataManager dataManager)
         {
             InitializeComponent();
 
-            GameRepository = gameRepository;
+            DataManager = dataManager;
 
             MainPage = new AppShell();
         }
