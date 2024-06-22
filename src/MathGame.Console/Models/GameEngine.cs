@@ -1,4 +1,5 @@
-﻿using MathGame.Console.Utilities;
+﻿using System.Diagnostics;
+using MathGame.Console.Utilities;
 using MathGame.Data;
 using MathGame.Enums;
 using MathGame.Logic;
@@ -18,7 +19,8 @@ namespace MathGame.Console.Models
         internal void PlayGame(GameType gameType)
         {
             int score = 0;
-
+            var timeTaken= new TimeSpan();
+            
             // TODO: Implement difficulty settings (enum, max values).
             System.Console.Clear();
             System.Console.WriteLine($"{gameType} game");
@@ -41,7 +43,12 @@ namespace MathGame.Console.Models
 
                 System.Console.WriteLine(question);
 
+                var stopwatch = new Stopwatch();
+
+                stopwatch.Start();
                 var userAnswer = UserInputReader.GetInt();
+                stopwatch.Stop();
+                timeTaken = timeTaken.Add(stopwatch.Elapsed);
 
                 if (userAnswer == question.Answer)
                 {
@@ -65,7 +72,8 @@ namespace MathGame.Console.Models
                 DatePlayed = DateTime.Now,
                 Score = score,
                 Type = gameType,
-                Difficulty = gameDifficulty
+                Difficulty = gameDifficulty,
+                TimeTakenInSeconds = timeTaken.TotalSeconds
             });
         }
     }

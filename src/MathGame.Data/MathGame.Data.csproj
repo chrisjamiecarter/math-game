@@ -10,10 +10,4 @@
     <ProjectReference Include="..\MathGame\MathGame.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="math-game.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

@@ -1,30 +1,19 @@
-using System.Collections.Generic;
-using System.Security.AccessControl;
+using System.Diagnostics;
 using MathGame.Enums;
 using MathGame.Logic;
 using MathGame.Models;
-using SQLitePCL;
 
 namespace MathGame.Maui;
 
 public partial class GamePage : ContentPage
 {
-    #region Constants
-
-    // TODO: Implement difficulty settings (enum, max values).
-    private const int TotalQuestions = 2;
-    
-    #endregion
     #region Variables
 
-    //int _firstNumber = 0;
-    //int _secondNumber = 0;
     private int _score = 0;
-    //int _questionsRemaining = TotalQuestions;
-
+    private TimeSpan _timeTaken;
     private readonly List<Question> _questions;
     private int _currentQuestionIndex = 0;
-
+    private Stopwatch _stopwatch;
     #endregion
     #region Constructors
 
@@ -36,7 +25,9 @@ public partial class GamePage : ContentPage
         Difficulty = gameDifficulty;
 
         _questions = QuestionEngine.GenerateQuestions(Type, Difficulty);
-                
+        _timeTaken = new TimeSpan();
+        _stopwatch = new Stopwatch();
+
         Title = $"Math Game: {Type} - {Difficulty}";
 
         ShowNextQuestion();
@@ -103,10 +94,15 @@ public partial class GamePage : ContentPage
 
         QuestionNumberLabel.Text = $"Question: {question.Id}";
         QuestionLabel.Text = $"{question}";
+
+        _stopwatch.Start();
     }
 
     private void ProcessAnswer(bool isCorrect)
     {
+        _stopwatch.Stop();
+        _timeTaken = _timeTaken.Add(_stopwatch.Elapsed);
+
         QuestionSection.IsVisible = false;
         FeedbackSection.IsVisible = true;
 
@@ -123,14 +119,15 @@ public partial class GamePage : ContentPage
         FeedbackSection.IsVisible = false;
         GameOverSection.IsVisible = true;
 
-        GameOverLabel.Text = $"Game Over. You scored {_score}/{TotalQuestions}!";
+        GameOverLabel.Text = $"Game Over. You scored {_score} points!";
 
         App.DataManager.InsertGame(new Game
         {
             DatePlayed = DateTime.Now,
             Score = _score,
             Type = Type,
-            Difficulty = Difficulty
+            Difficulty = Difficulty,
+            TimeTakenInSeconds = _timeTaken.TotalSeconds
         });
     }
         

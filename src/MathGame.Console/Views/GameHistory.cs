@@ -15,7 +15,7 @@ namespace MathGame.Console.Views
 
             foreach (var game in gameHistory)
             {
-                System.Console.WriteLine($"{game.DatePlayed} - {game.Type} ({game.Difficulty}): {game.Score}pts");
+                System.Console.WriteLine($"{game.DatePlayed:d} - {game.Type} ({game.Difficulty}): {game.Score} points in {game.TimeTakenInSeconds:N1} seconds");
             }
             System.Console.WriteLine("--------------------");
             System.Console.WriteLine();

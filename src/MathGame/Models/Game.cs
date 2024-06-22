@@ -19,6 +19,8 @@ namespace MathGame.Models
 
         public GameDifficulty Difficulty { get; set; }
 
+        public double TimeTakenInSeconds { get; set; }
+
         #endregion
     }
 }
