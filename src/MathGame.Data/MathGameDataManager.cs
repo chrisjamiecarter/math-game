@@ -23,7 +23,9 @@ namespace MathGame.Data
 
         public void Initialise()
         {
-            using (var connection = new SQLiteConnection(_filePath))
+            // Creates a connection, and also creates the database file if it doesn't exist.
+            using (var connection = new SQLiteConnection(_filePath, 
+                SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex | SQLiteOpenFlags.ReadWrite))
             {
                 connection.CreateTable<Game>();
             }
