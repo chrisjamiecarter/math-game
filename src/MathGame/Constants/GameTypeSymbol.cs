@@ -15,5 +15,7 @@ namespace MathGame.Constants
         public static readonly string Multiplication = "×";
         
         public static readonly string Division = "÷";
+
+        public static readonly string Random = "🔀";
     }
 }

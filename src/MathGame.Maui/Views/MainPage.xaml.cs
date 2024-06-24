@@ -47,9 +47,9 @@ namespace MathGame.Maui
                 "-" => GameType.Subtraction,
                 "×" => GameType.Multiplication,
                 "÷" => GameType.Division,
+                "🔀" => GameType.Random,
                 _ => throw new ArgumentException($"Unsupported game type: {symbol}")
             };
-
         }
 
         #endregion

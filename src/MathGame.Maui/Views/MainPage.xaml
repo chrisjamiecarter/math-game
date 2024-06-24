@@ -18,7 +18,7 @@
                    FontSize="40"
                    HorizontalOptions="Center"/>
 
-            <Grid ColumnDefinitions="*,*,*,*"
+            <Grid ColumnDefinitions="*,*,*,*,*"
                   RowDefinitions="*,150">
                                 
                 <Button Grid.Column="0"
@@ -41,8 +41,13 @@
                         Clicked="OnGame_Clicked"
                         MaximumWidthRequest="100"
                         FontSize="60"/>
+                <Button Grid.Column="4"
+                        Text="🔀"
+                        Clicked="OnGame_Clicked"
+                        MaximumWidthRequest="100"
+                        FontSize="60"/>
                 <Button Grid.Row="1"
-                        Grid.ColumnSpan="4"
+                        Grid.ColumnSpan="5"
                         BackgroundColor="CornflowerBlue"
                         Text="View Previous Games"
                         Clicked="OnViewGameHistory_Clicked"
