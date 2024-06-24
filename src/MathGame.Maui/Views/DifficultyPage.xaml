@@ -37,6 +37,29 @@
                         FontSize="32"/>
             </Grid>
 
+            <Label Text="How many questions"
+                   FontSize="60"
+                   HorizontalOptions="Center" />
+
+            <Grid ColumnDefinitions="*"
+                  RowDefinitions="100,100">
+
+                <Slider x:Name="QuestionsSlider"
+                        Minimum="1"
+                        Maximum="20"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        ValueChanged="OnQuestionsSlider_ValueChanged"
+                        DragCompleted="OnQuestionsSlider_DragCompleted"/>
+                <Label x:Name="QuestionsSliderLabel"
+                       Text="1"
+                       FontSize="60"
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       HorizontalOptions="Center"/>
+                
+            </Grid>
+
         </VerticalStackLayout>
         
     </ContentView>

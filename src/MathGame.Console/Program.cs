@@ -1,9 +1,12 @@
-﻿using MathGame.Console.Models;
+﻿// -------------------------------------------------------------------------------------------------
+// MathGame.Console.Program
+// -------------------------------------------------------------------------------------------------
+// The insertion point of the console application.
+// -------------------------------------------------------------------------------------------------
+using MathGame.Console.Enums;
 using MathGame.Console.Utilities;
 using MathGame.Console.Views;
 using MathGame.Data;
-using MathGame.Enums;
-using MathGame.Models;
 
 namespace MathGame.Console
 {
@@ -16,9 +19,9 @@ namespace MathGame.Console
         private static GameStatus _status;
 
         #endregion
-        #region Methods: Static
+        #region Methods: Private Static
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var databaseFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"math-game.db");
             _dataManager = new MathGameDataManager(databaseFilePath);
@@ -38,6 +41,9 @@ namespace MathGame.Console
             // Close the application.
             Environment.Exit(1);
         }
+
+        #endregion
+        #region Methods: Internal Static
 
         internal static string? GetName()
         {

@@ -1,9 +1,16 @@
-﻿using MathGame.Enums;
+﻿// -------------------------------------------------------------------------------------------------
+// MathGame.Console.Utilities.UserInputReader
+// -------------------------------------------------------------------------------------------------
+// Helper class to present a question and return a valid user response from the console.
+// -------------------------------------------------------------------------------------------------
+using MathGame.Enums;
 
 namespace MathGame.Console.Utilities
 {
     internal static class UserInputReader
     {
+        #region Methods: Internal Static
+
         internal static int GetInt()
         {
             string? input = System.Console.ReadLine();
@@ -18,6 +25,23 @@ namespace MathGame.Console.Utilities
 
             output = int.Parse(input);
 
+            return output;
+        }
+
+        internal static int GetInt(int min, int max)
+        {
+            string? input = System.Console.ReadLine();
+            int output;
+
+            while (string.IsNullOrEmpty(input) || !int.TryParse(input, out _) || int.Parse(input) < min || int.Parse(input) > max)
+            {
+                System.Console.WriteLine($"Input must be an Integer between {min} and {max}.");
+                input = System.Console.ReadLine();
+
+            };
+            
+            output = int.Parse(input);
+                        
             return output;
         }
 
@@ -54,5 +78,7 @@ namespace MathGame.Console.Utilities
 
             return string.IsNullOrEmpty(input) ? "" : input;
         }
+
+        #endregion
     }
 }

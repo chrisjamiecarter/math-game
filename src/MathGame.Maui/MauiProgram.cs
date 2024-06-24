@@ -1,4 +1,9 @@
-﻿using MathGame.Data;
+﻿// -------------------------------------------------------------------------------------------------
+// MathGame.Maui.MauiProgram
+// -------------------------------------------------------------------------------------------------
+// Creates, configures and runs the Maui application.
+// -------------------------------------------------------------------------------------------------
+using MathGame.Data;
 using Microsoft.Extensions.Logging;
 
 namespace MathGame.Maui
