@@ -20,9 +20,10 @@ namespace MathGame.Logic
             return gameType switch
             {
                 GameType.Addition => GenerateAdditionQuestions(settings),
-                GameType.Subtraction => GenerateSubtractionNumbers(settings),
-                GameType.Multiplication => GenerateMultiplicationNumbers(settings),
-                GameType.Division => GenerateDivisionNumbers(settings),
+                GameType.Subtraction => GenerateSubtractionQuestions(settings),
+                GameType.Multiplication => GenerateMultiplicationQuestions(settings),
+                GameType.Division => GenerateDivisionQuestions(settings),
+                GameType.Random => GenerateRandomQuestions(settings),
                 _ => throw new ArgumentOutOfRangeException(nameof(gameType))
             };
         }
@@ -36,8 +37,8 @@ namespace MathGame.Logic
 
             for (int i = 0; i < settings.QuestionCount; i++)
             {
-                var firstNumber = Random.Shared.Next(settings.AdditionNumberMin, settings.AdditionNumberMax);
-                var secondNumber = Random.Shared.Next(settings.AdditionNumberMin, settings.AdditionNumberMax);
+                var firstNumber = Random.Shared.Next(settings.AdditionNumberMin, settings.AdditionNumberMax + 1);
+                var secondNumber = Random.Shared.Next(settings.AdditionNumberMin, settings.AdditionNumberMax + 1);
 
                 result.Add(new Question()
                 {
@@ -51,19 +52,37 @@ namespace MathGame.Logic
             return result;
         }
 
-        private static List<Question> GenerateSubtractionNumbers(DifficultySettings settings)
+        private static Question GenerateAdditionQuestion(DifficultySettings settings, int index)
+        {
+            Question result;
+            
+            var firstNumber = Random.Shared.Next(settings.AdditionNumberMin, settings.AdditionNumberMax + 1);
+            var secondNumber = Random.Shared.Next(settings.AdditionNumberMin, settings.AdditionNumberMax + 1);
+
+            result = new Question()
+            {
+                Id = index + 1,
+                FirstNumber = firstNumber,
+                SecondNumber = secondNumber,
+                Type = GameType.Addition
+            };
+            
+            return result;
+        }
+
+        private static List<Question> GenerateSubtractionQuestions(DifficultySettings settings)
         {
             List<Question> result = [];
 
             for (int i = 0; i < settings.QuestionCount; i++)
             {
-                var firstNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax);
-                var secondNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax);
+                var firstNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax + 1);
+                var secondNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax + 1);
 
                 while (firstNumber < secondNumber)
                 {
-                    firstNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax);
-                    secondNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax);
+                    firstNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax + 1);
+                    secondNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax + 1);
                 }
 
                 result.Add(new Question()
@@ -78,14 +97,38 @@ namespace MathGame.Logic
             return result;
         }
 
-        private static List<Question> GenerateMultiplicationNumbers(DifficultySettings settings)
+        private static Question GenerateSubtractionQuestion(DifficultySettings settings, int index)
+        {
+            Question result;
+
+            var firstNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax + 1);
+            var secondNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax + 1);
+
+            while (firstNumber < secondNumber)
+            {
+                firstNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax + 1);
+                secondNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax + 1);
+            }
+
+            result = new Question()
+            {
+                Id = index + 1,
+                FirstNumber = firstNumber,
+                SecondNumber = secondNumber,
+                Type = GameType.Subtraction
+            };
+
+            return result;
+        }
+
+        private static List<Question> GenerateMultiplicationQuestions(DifficultySettings settings)
         {
             List<Question> result = [];
 
             for (int i = 0; i < settings.QuestionCount; i++)
             {
-                var firstNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax);
-                var secondNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax);
+                var firstNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax + 1);
+                var secondNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax + 1);
 
                 result.Add(new Question()
                 {
@@ -99,19 +142,37 @@ namespace MathGame.Logic
             return result;
         }
 
-        private static List<Question> GenerateDivisionNumbers(DifficultySettings settings)
+        private static Question GenerateMultiplicationQuestion(DifficultySettings settings, int index)
+        {
+            Question result;
+
+            var firstNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax + 1);
+            var secondNumber = Random.Shared.Next(settings.SubtractionNumberMin, settings.SubtractionNumberMax + 1);
+
+            result = new Question()
+            {
+                Id = index + 1,
+                FirstNumber = firstNumber,
+                SecondNumber = secondNumber,
+                Type = GameType.Multiplication
+            };
+
+            return result;
+        }
+
+        private static List<Question> GenerateDivisionQuestions(DifficultySettings settings)
         {
             List<Question> result = [];
 
             for (int i = 0; i < settings.QuestionCount; i++)
             {
-                var firstNumber = Random.Shared.Next(settings.DivisionNumberMin, settings.DivisionNumberMax);
-                var secondNumber = Random.Shared.Next(settings.DivisionNumberMin, settings.DivisionNumberMax);
+                var firstNumber = Random.Shared.Next(settings.DivisionNumberMin, settings.DivisionNumberMax + 1);
+                var secondNumber = Random.Shared.Next(settings.DivisionNumberMin, settings.DivisionNumberMax + 1);
 
                 while (firstNumber % secondNumber != 0)
                 {
-                    firstNumber = Random.Shared.Next(settings.DivisionNumberMin, settings.DivisionNumberMax);
-                    secondNumber = Random.Shared.Next(settings.DivisionNumberMin, settings.DivisionNumberMax);
+                    firstNumber = Random.Shared.Next(settings.DivisionNumberMin, settings.DivisionNumberMax + 1);
+                    secondNumber = Random.Shared.Next(settings.DivisionNumberMin, settings.DivisionNumberMax + 1);
                 }
 
                 result.Add(new Question()
@@ -121,6 +182,59 @@ namespace MathGame.Logic
                     SecondNumber = secondNumber,
                     Type = GameType.Division
                 });
+            }
+
+            return result;
+        }
+
+        private static Question GenerateDivisionQuestion(DifficultySettings settings, int index)
+        {
+            Question result;
+
+            var firstNumber = Random.Shared.Next(settings.DivisionNumberMin, settings.DivisionNumberMax + 1);
+            var secondNumber = Random.Shared.Next(settings.DivisionNumberMin, settings.DivisionNumberMax + 1);
+
+            while (firstNumber % secondNumber != 0)
+            {
+                firstNumber = Random.Shared.Next(settings.DivisionNumberMin, settings.DivisionNumberMax + 1);
+                secondNumber = Random.Shared.Next(settings.DivisionNumberMin, settings.DivisionNumberMax + 1);
+            }
+            result = new Question()
+            {
+                Id = index + 1,
+                FirstNumber = firstNumber,
+                SecondNumber = secondNumber,
+                Type = GameType.Division
+            };
+
+            return result;
+        }
+
+        private static List<Question> GenerateRandomQuestions(DifficultySettings settings)
+        {
+            List<Question> result = [];
+
+            for (int i = 0; i < settings.QuestionCount; i++)
+            {
+                var gameType = Random.Shared.Next(0, 4);
+
+                switch (gameType)
+                {
+                    case 0:
+                        result.Add(GenerateAdditionQuestion(settings, i));
+                        break;
+                    case 1:
+                        result.Add(GenerateSubtractionQuestion(settings, i));
+                        break;
+                    case 2:
+                        result.Add(GenerateMultiplicationQuestion(settings, i));
+                        break;
+                    case 3:
+                        result.Add(GenerateDivisionQuestion(settings, i));
+                        break;
+                    default:
+                        break;
+                }
             }
 
             return result;

@@ -40,6 +40,7 @@ namespace MathGame.Console.Views
                 menuTextSb.AppendLine("S - Subtraction");
                 menuTextSb.AppendLine("M - Multiplication");
                 menuTextSb.AppendLine("D - Division");
+                menuTextSb.AppendLine("R - Random");
                 menuTextSb.AppendLine("Q - Quit the application");
                 menuTextSb.AppendLine("");
                 menuTextSb.AppendLine("Enter your selection: ");
@@ -98,6 +99,9 @@ namespace MathGame.Console.Views
                     break;
                 case "d":
                     gameEngine.PlayGame(GameType.Division);
+                    break;
+                case "r":
+                    gameEngine.PlayGame(GameType.Random);
                     break;
                 case "q":
                     result = GameStatus.Stopped;
