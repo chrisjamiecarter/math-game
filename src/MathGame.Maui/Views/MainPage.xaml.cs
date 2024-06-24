@@ -1,4 +1,8 @@
-﻿using System.Security.AccessControl;
+﻿// -------------------------------------------------------------------------------------------------
+// MathGame.Maui.MainPage
+// -------------------------------------------------------------------------------------------------
+// The main content page view of the application.
+// -------------------------------------------------------------------------------------------------
 using MathGame.Enums;
 using MathGame.Maui.Views;
 
@@ -6,12 +10,17 @@ namespace MathGame.Maui
 {
     public partial class MainPage : ContentPage
     {
+        #region Constructors
+        
         public MainPage()
         {
             InitializeComponent();
 
             Title = "Math Game";
         }
+
+        #endregion
+        #region EventHandlers
 
         private void OnGame_Clicked(object sender, EventArgs e)
         {
@@ -24,12 +33,13 @@ namespace MathGame.Maui
 
         private void OnViewGameHistory_Clicked(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
-
             Navigation.PushAsync(new GameHistoryPage());
         }
 
-        private GameType GetGameType(string symbol)
+        #endregion
+        #region Methods: Private Static
+
+        private static GameType GetGameType(string symbol)
         {
             return symbol switch
             {
@@ -41,5 +51,7 @@ namespace MathGame.Maui
             };
 
         }
+
+        #endregion
     }
 }

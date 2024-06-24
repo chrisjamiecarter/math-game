@@ -1,6 +1,11 @@
-﻿using System.Text;
+﻿// -------------------------------------------------------------------------------------------------
+// MathGame.Console.Views.Menu
+// -------------------------------------------------------------------------------------------------
+// The menu console view of the application.
+// -------------------------------------------------------------------------------------------------
+using System.Text;
+using MathGame.Console.Enums;
 using MathGame.Console.Models;
-using MathGame.Console.Utilities;
 using MathGame.Data;
 using MathGame.Enums;
 using MathGame.Models;
@@ -9,13 +14,42 @@ namespace MathGame.Console.Views
 {
     internal class Menu
     {
+        #region Variables
+
         private bool _startup = true;
         private readonly MathGameDataManager _dataManager;
+
+        #endregion
+        #region Constructors
 
         internal Menu(MathGameDataManager dataManager)
         {
            _dataManager = dataManager;
         }
+
+        #endregion
+        #region Properties
+
+        internal static string MenuText
+        {
+            get
+            {
+                var menuTextSb = new StringBuilder();
+                menuTextSb.AppendLine("V - View previous games");
+                menuTextSb.AppendLine("A - Addition");
+                menuTextSb.AppendLine("S - Subtraction");
+                menuTextSb.AppendLine("M - Multiplication");
+                menuTextSb.AppendLine("D - Division");
+                menuTextSb.AppendLine("Q - Quit the application");
+                menuTextSb.AppendLine("");
+                menuTextSb.AppendLine("Enter your selection: ");
+
+                return menuTextSb.ToString();
+            }
+        }
+
+        #endregion
+        #region Methods: Internal
 
         internal GameStatus Show(string? name, DateTime date)
         {
@@ -34,16 +68,6 @@ namespace MathGame.Console.Views
             var option = GetOption();
 
             return PerformOption(option);
-        }
-
-        internal static string GetOption()
-        {
-            var option = System.Console.ReadLine();
-
-            // Normalise.
-            option = string.IsNullOrWhiteSpace(option) ? "" : option.Trim().ToLower();
-
-            return option;
         }
 
         internal GameStatus PerformOption(string option)
@@ -87,22 +111,20 @@ namespace MathGame.Console.Views
             return result;
         }
 
-        internal static string MenuText 
-        { 
-            get
-            {
-                var menuTextSb = new StringBuilder();
-                menuTextSb.AppendLine("V - View previous games");
-                menuTextSb.AppendLine("A - Addition");
-                menuTextSb.AppendLine("S - Subtraction");
-                menuTextSb.AppendLine("M - Multiplication");
-                menuTextSb.AppendLine("D - Division");
-                menuTextSb.AppendLine("Q - Quit the application");
-                menuTextSb.AppendLine("");
-                menuTextSb.AppendLine("Enter your selection: ");
+        #endregion
+        #region Methods: Internal Static
 
-                return menuTextSb.ToString();
-            }
+        internal static string GetOption()
+        {
+            var option = System.Console.ReadLine();
+
+            // Normalise.
+            option = string.IsNullOrWhiteSpace(option) ? "" : option.Trim().ToLower();
+
+            return option;
         }
+
+        #endregion
+
     }
 }

@@ -1,10 +1,17 @@
-﻿using MathGame.Constants;
+﻿// -------------------------------------------------------------------------------------------------
+// MathGame.Models.Question
+// -------------------------------------------------------------------------------------------------
+// Holds the question data.
+// -------------------------------------------------------------------------------------------------
+using MathGame.Constants;
 using MathGame.Enums;
 
 namespace MathGame.Models
 {
     public class Question
     {
+        #region Properties
+        
         public int Id { get; init; }
 
         public int FirstNumber { get; set; }
@@ -17,10 +24,10 @@ namespace MathGame.Models
         {
             get => Type switch
             {
-                GameType.Addition => GameOperation.Addition,
-                GameType.Subtraction => GameOperation.Subtraction,
-                GameType.Multiplication => GameOperation.Multiplication,
-                GameType.Division => GameOperation.Division,
+                GameType.Addition => GameTypeSymbol.Addition,
+                GameType.Subtraction => GameTypeSymbol.Subtraction,
+                GameType.Multiplication => GameTypeSymbol.Multiplication,
+                GameType.Division => GameTypeSymbol.Division,
                 _ => throw new ArgumentOutOfRangeException($"Invalid GameType {Type}")
             };
         }
@@ -37,9 +44,14 @@ namespace MathGame.Models
             };
         }
 
+        #endregion
+        #region Methods: Public Override
+
         public override string ToString()
         {
             return $"{FirstNumber} {Operation} {SecondNumber} = ?";
         }
+
+        #endregion
     }
 }

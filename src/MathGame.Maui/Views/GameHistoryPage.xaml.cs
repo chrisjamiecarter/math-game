@@ -1,28 +1,44 @@
-namespace MathGame.Maui;
-
-public partial class GameHistoryPage : ContentPage
+// -------------------------------------------------------------------------------------------------
+// MathGame.Maui.GameHistoryPage
+// -------------------------------------------------------------------------------------------------
+// The game history content page view of the application.
+// -------------------------------------------------------------------------------------------------
+namespace MathGame.Maui
 {
-	public GameHistoryPage()
+    public partial class GameHistoryPage : ContentPage
     {
-        InitializeComponent();
+        #region Constructors
 
-        Title = $"Math Game: Game History";
+        public GameHistoryPage()
+        {
+            InitializeComponent();
 
-        RefreshGameCollection();
+            Title = $"Math Game: Game History";
 
-    }
+            RefreshGameCollection();
 
-	private void OnDeleteButton_Clicked(object sender, EventArgs e)
-	{
-		var button = (ImageButton)sender;
-		var id = (int)button.BindingContext;
+        }
 
-        App.DataManager.DeleteGame(id);
-		RefreshGameCollection();
-    }
+        #endregion
+        #region EventHandlers
 
-	private void RefreshGameCollection()
-	{
-        GamesCollection.ItemsSource = App.DataManager.GetGames();
+        private void OnDeleteButton_Clicked(object sender, EventArgs e)
+    	{
+    		var button = (ImageButton)sender;
+    		var id = (int)button.BindingContext;
+
+            App.DataManager.DeleteGame(id);
+    		RefreshGameCollection();
+        }
+
+        #endregion
+        #region Methods: Private Static
+
+        private void RefreshGameCollection()
+    	{
+            GamesCollection.ItemsSource = App.DataManager.GetGames();
+        }
+
+        #endregion
     }
 }

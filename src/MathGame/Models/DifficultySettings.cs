@@ -1,15 +1,21 @@
-﻿using MathGame.Enums;
+﻿// -------------------------------------------------------------------------------------------------
+// MathGame.Models.DifficultySettings
+// -------------------------------------------------------------------------------------------------
+// Configuration settings for the allowed game types.
+// -------------------------------------------------------------------------------------------------
+using MathGame.Enums;
 
 namespace MathGame.Models
 {
     public class DifficultySettings
     {
-        public DifficultySettings(GameDifficulty gameDifficulty)
+        #region Constructors
+        
+        public DifficultySettings(GameDifficulty gameDifficulty, int questionCount)
         {
             switch (gameDifficulty)
             {
                 case GameDifficulty.Easy:
-                    QuestionCount = 2;
                     AdditionNumberMin = 1;
                     AdditionNumberMax = 9;
                     SubtractionNumberMin = 1;
@@ -20,7 +26,6 @@ namespace MathGame.Models
                     DivisionNumberMax = 9;
                     break;
                 case GameDifficulty.Normal:
-                    QuestionCount = 5;
                     AdditionNumberMin = 10;
                     AdditionNumberMax = 99;
                     SubtractionNumberMin = 10;
@@ -31,7 +36,6 @@ namespace MathGame.Models
                     DivisionNumberMax = 20;
                     break;
                 case GameDifficulty.Hard:
-                    QuestionCount = 10;
                     AdditionNumberMin = 20;
                     AdditionNumberMax = 999;
                     SubtractionNumberMin = 20;
@@ -44,9 +48,14 @@ namespace MathGame.Models
                 default:
                     throw new ArgumentOutOfRangeException(nameof(gameDifficulty));
             }
-        }
 
-        public int QuestionCount { get; init; }
+            QuestionCount = questionCount;
+        }
+        
+        #endregion
+        #region Properties
+
+        public int QuestionCount { get; }
 
         public int AdditionNumberMin { get; }
 
@@ -63,5 +72,7 @@ namespace MathGame.Models
         public int DivisionNumberMin { get; }
 
         public int DivisionNumberMax { get; }
+
+        #endregion
     }
 }

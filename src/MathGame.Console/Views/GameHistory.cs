@@ -1,11 +1,20 @@
-﻿using MathGame.Data;
+﻿// -------------------------------------------------------------------------------------------------
+// MathGame.Console.Views.GameHistory
+// -------------------------------------------------------------------------------------------------
+// The game history console view of the application.
+// -------------------------------------------------------------------------------------------------
 using MathGame.Models;
 
 namespace MathGame.Console.Views
 {
     internal static class GameHistory
     {
+        #region Constants
+
         internal const string Title = "Game History";
+
+        #endregion
+        #region Methods: Internal Static
 
         internal static void Show(IReadOnlyList<Game> gameHistory)
         {
@@ -22,5 +31,7 @@ namespace MathGame.Console.Views
             System.Console.WriteLine("Press any key to return to the Main Menu...");
             System.Console.ReadLine();
         }
+
+        #endregion
     }
 }

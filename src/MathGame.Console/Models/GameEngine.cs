@@ -1,4 +1,10 @@
-﻿using System.Diagnostics;
+﻿// -------------------------------------------------------------------------------------------------
+// MathGame.Console.Models.GameEngine
+// -------------------------------------------------------------------------------------------------
+// Game related business logic.
+// Asks questions for the game, records answers, score, and records to database.
+// -------------------------------------------------------------------------------------------------
+using System.Diagnostics;
 using MathGame.Console.Utilities;
 using MathGame.Data;
 using MathGame.Enums;
@@ -9,19 +15,26 @@ namespace MathGame.Console.Models
 {
     internal class GameEngine
     {
+        #region Methods: Variables
+
         internal readonly MathGameDataManager _dataManager;
+
+        #endregion
+        #region Constructors
 
         internal GameEngine(MathGameDataManager dataManager)
         {
             _dataManager = dataManager;
         }
-        
+
+        #endregion
+        #region Methods: Internal
+
         internal void PlayGame(GameType gameType)
         {
             int score = 0;
             var timeTaken= new TimeSpan();
             
-            // TODO: Implement difficulty settings (enum, max values).
             System.Console.Clear();
             System.Console.WriteLine($"{gameType} game");
             System.Console.WriteLine("--------------------");
@@ -32,8 +45,12 @@ namespace MathGame.Console.Models
             System.Console.WriteLine("3 - Hard ");
             
             var gameDifficulty = UserInputReader.GetGameDifficulty();
-                        
-            List<Question> questions = QuestionEngine.GenerateQuestions(gameType, gameDifficulty);
+
+            System.Console.WriteLine("Please enter amount of questions (1-20): ");
+
+            var questionCount = UserInputReader.GetInt(1, 20);
+
+            List<Question> questions = QuestionEngine.GenerateQuestions(gameType, gameDifficulty, questionCount);
                                    
             foreach (Question question in questions)
             {
@@ -76,5 +93,7 @@ namespace MathGame.Console.Models
                 TimeTakenInSeconds = timeTaken.TotalSeconds
             });
         }
+
+        #endregion
     }
 }

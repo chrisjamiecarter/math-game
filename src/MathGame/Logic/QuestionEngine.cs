@@ -1,13 +1,21 @@
-﻿using MathGame.Enums;
+﻿// -------------------------------------------------------------------------------------------------
+// MathGame.Logic.QuestionEngine
+// -------------------------------------------------------------------------------------------------
+// Question related business logic.
+// Generates questions for all game types configured by difficulty and amount of questions.
+// -------------------------------------------------------------------------------------------------
+using MathGame.Enums;
 using MathGame.Models;
 
 namespace MathGame.Logic
 {
     public static class QuestionEngine
     {
-        public static List<Question> GenerateQuestions(GameType gameType, GameDifficulty gameDifficulty)
+        #region Methods: Public Static
+
+        public static List<Question> GenerateQuestions(GameType gameType, GameDifficulty gameDifficulty, int questionCount)
         {
-            var settings = new DifficultySettings(gameDifficulty);
+            var settings = new DifficultySettings(gameDifficulty, questionCount);
 
             return gameType switch
             {
@@ -18,6 +26,9 @@ namespace MathGame.Logic
                 _ => throw new ArgumentOutOfRangeException(nameof(gameType))
             };
         }
+
+        #endregion
+        #region Methods: Private Static
 
         private static List<Question> GenerateAdditionQuestions(DifficultySettings settings)
         {
@@ -114,5 +125,7 @@ namespace MathGame.Logic
 
             return result;
         }
+
+        #endregion
     }
 }
