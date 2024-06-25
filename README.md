@@ -89,7 +89,7 @@ On completion, the game will be recorded to an SQLite3 database.
 
 When you start the application, you will be presented with a menu:
 
-![math game maui main menu](./img/math-game-maui-main-menu.PNG)
+![math game maui main menu](./img/math-game-maui-main-menu.png)
 
 Choose an option:
 - **+**: to play an Addition game.
@@ -101,7 +101,7 @@ Choose an option:
 
 If you choose to play a game, you will then be presented with a difficulty menu:
     
-![math game maui difficulty menu](./img/math-game-maui-difficulty-menu.PNG)
+![math game maui difficulty menu](./img/math-game-maui-difficulty-menu.png)
 
 Use the slider to choose how many questions you want to answer.
 
