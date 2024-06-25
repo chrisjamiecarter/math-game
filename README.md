@@ -1,6 +1,6 @@
 ﻿<div align="center">
 
-<img src="./img/math-game-logo.PNG" alt="math game logo" width="100px" />
+<img src="./img/math-game-logo.png" alt="math game logo" width="100px" />
 <h1> Math Game</h1>
 
 </div>
