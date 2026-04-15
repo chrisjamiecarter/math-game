@@ -54,16 +54,19 @@ Choose your operation, difficulty level, and number of questions to start sharpe
 ### Running the Application
 
 1. Clone the repository:
-	- `git clone https://github.com/chrisjamiecarter/math-game.git`
+    ```bash
+	  git clone https://github.com/chrisjamiecarter/math-game.git
+    ```
 
 2. You can run the Console or MAUI project from Visual Studio (ensure the correct project is set as the startup project).
 
 OR
 
 3. Run the Console or MAUI application using the .NET CLI from the solution root directory:
-
-   - `dotnet run --project ./src/MathGame.Console`
-   - `dotnet run --project ./src/MathGame.Maui`
+    ```bash
+    dotnet run --project ./src/MathGame.Console
+    dotnet run --project ./src/MathGame.Maui
+    ```
 
 ### Docker Container
 
@@ -73,17 +76,24 @@ This section explains how to run the Math Game console application inside a Dock
 
 1. Build the Docker image using the docker cli from the solution root directory:
    ```bash
-   docker build -t mathgame:latest .
+   docker build -t mathgame:v1.0.0 -t mathgame:latest .
    ```
 
 #### Running the Container
 
-1. Run the container in interactive mode:
+1. Run the version tag specific container in interactive mode and remove it after exit:
    ```bash
-   docker run -it mathgame:latest
+   docker run -it --rm mathgame:v1.0.0
    ```
 
-2. The application will start and prompt for your name. Enter your name to begin playing!
+OR
+
+2. Run the latest tag container in interactive mode and remove it after exit:
+   ```bash
+   docker run -it --rm mathgame:latest
+   ```
+
+3. The application will start and prompt for your name. Enter your name to begin playing!
 
 #### Notes
 
@@ -126,8 +136,8 @@ This application fulfils the following [The C# Academy - Intro to Docker](https:
 - [x] You should include a brief README explaining how to build and run your container. Mention any dependencies or setup steps.
 
 #### Challenges
-- [ ] Update your Dockerfile to accept command-line arguments when running the container. For example, the user could pass a difficulty level or username to the math game.
-- [ ] Tag your Docker image with a custom version label (e.g. 'mathgame:v1') and use that tag when running the container. This helps build awareness of image versioning and future maintainability.
+- [x] Update your Dockerfile to accept command-line arguments when running the container. For example, the user could pass a difficulty level or username to the math game.
+- [x] Tag your Docker image with a custom version label (e.g. 'mathgame:v1') and use that tag when running the container. This helps build awareness of image versioning and future maintainability.
 
 ## Features
 
