@@ -1,0 +1,27 @@
+# Git
+**/.git
+**/.gitignore
+
+# Build outputs
+**/bin
+**/obj
+
+# IDE
+**/.vs
+**/.vscode
+**/*.user
+**/*.suo
+
+# Docker
+**/Dockerfile*
+**/docker-compose*
+**/.dockerignore
+
+# Documentation
+**/README.md
+**/LICENSE
+
+# Media
+**/*.png
+**/*.jpg
+**/*.svg
