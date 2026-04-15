@@ -4,6 +4,10 @@ using MathGame.Enums;
 
 namespace MathGame.Console.Utilities;
 
+/// <summary>
+/// Parser for command-line arguments.
+/// It validates the arguments and returns a CommandLineArgs object with the parsed values, or an error message if validation fails.
+/// </summary>
 internal static class ArgumentParser
 {
     private const int MinDifficulty = 1;

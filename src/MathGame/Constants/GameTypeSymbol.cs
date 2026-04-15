@@ -1,21 +1,17 @@
-﻿// -------------------------------------------------------------------------------------------------
-// MathGame.Constants.GameTypeSymbol
-// -------------------------------------------------------------------------------------------------
-// Constants for the mathmatical symbol associated to a game type, stored as readonly fields.
-// -------------------------------------------------------------------------------------------------
+﻿namespace MathGame.Constants;
 
-namespace MathGame.Constants
+/// <summary>
+/// Constants for the mathmatical symbol associated to a game type, stored as readonly fields.
+/// </summary>
+public static class GameTypeSymbol
 {
-    public static class GameTypeSymbol
-    {
-        public static readonly string Addition = "+";
-        
-        public static readonly string Subtraction = "−";
-        
-        public static readonly string Multiplication = "×";
-        
-        public static readonly string Division = "÷";
+    public static readonly string Addition = "+";
+    
+    public static readonly string Subtraction = "−";
+    
+    public static readonly string Multiplication = "×";
+    
+    public static readonly string Division = "÷";
 
-        public static readonly string Random = "🔀";
-    }
+    public static readonly string Random = "🔀";
 }

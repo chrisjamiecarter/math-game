@@ -5,6 +5,10 @@ using MathGame.Data;
 
 namespace MathGame.Console;
 
+/// <summary>
+/// Insertion point for the application.
+/// It initializes the data manager, shows the menu, and handles user input to play the game or view previous games.
+/// </summary>
 internal static class Program
 {
     private static readonly DateTime _date = DateTime.Now;

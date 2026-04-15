@@ -1,15 +1,11 @@
-﻿// -------------------------------------------------------------------------------------------------
-// MathGame.Enums.GameDifficulty
-// -------------------------------------------------------------------------------------------------
-// Enum for the variations of game difficulties.
-// -------------------------------------------------------------------------------------------------
+﻿namespace MathGame.Enums;
 
-namespace MathGame.Enums
+/// <summary>
+/// Enum for the variations of game difficulties.
+/// </summary>
+public enum GameDifficulty
 {
-    public enum GameDifficulty
-    {
-        Easy = 1,
-        Normal = 2,
-        Hard = 3
-    }
+    Easy = 1,
+    Normal = 2,
+    Hard = 3
 }

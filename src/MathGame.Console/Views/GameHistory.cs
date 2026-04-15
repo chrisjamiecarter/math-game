@@ -1,37 +1,27 @@
-﻿// -------------------------------------------------------------------------------------------------
-// MathGame.Console.Views.GameHistory
-// -------------------------------------------------------------------------------------------------
-// The game history console view of the application.
-// -------------------------------------------------------------------------------------------------
-using MathGame.Models;
+﻿using MathGame.Models;
 
-namespace MathGame.Console.Views
+namespace MathGame.Console.Views;
+
+/// <summary>
+/// The game history console view of the application.
+/// </summary>
+internal static class GameHistory
 {
-    internal static class GameHistory
+    internal const string Title = "Game History";
+
+    internal static void Show(IReadOnlyList<Game> gameHistory)
     {
-        #region Constants
+        System.Console.Clear();
+        System.Console.WriteLine(Title);
+        System.Console.WriteLine("--------------------");
 
-        internal const string Title = "Game History";
-
-        #endregion
-        #region Methods: Internal Static
-
-        internal static void Show(IReadOnlyList<Game> gameHistory)
+        foreach (var game in gameHistory)
         {
-            System.Console.Clear();
-            System.Console.WriteLine(Title);
-            System.Console.WriteLine("--------------------");
-
-            foreach (var game in gameHistory)
-            {
-                System.Console.WriteLine($"{game.DatePlayed:d} - {game.Type} ({game.Difficulty}): {game.Score} points in {game.TimeTakenInSeconds:N1} seconds");
-            }
-            System.Console.WriteLine("--------------------");
-            System.Console.WriteLine();
-            System.Console.WriteLine("Press any key to return to the Main Menu...");
-            System.Console.ReadLine();
+            System.Console.WriteLine($"{game.DatePlayed:d} - {game.Type} ({game.Difficulty}): {game.Score} points in {game.TimeTakenInSeconds:N1} seconds");
         }
-
-        #endregion
+        System.Console.WriteLine("--------------------");
+        System.Console.WriteLine();
+        System.Console.WriteLine("Press any key to return to the Main Menu...");
+        System.Console.ReadLine();
     }
 }

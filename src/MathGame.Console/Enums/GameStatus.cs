@@ -1,14 +1,10 @@
-﻿// -------------------------------------------------------------------------------------------------
-// MathGame.Console.Enums.GameStatus
-// -------------------------------------------------------------------------------------------------
-// Enum for the variations of game status'.
-// -------------------------------------------------------------------------------------------------
+﻿namespace MathGame.Console.Enums;
 
-namespace MathGame.Console.Enums
+/// <summary>
+/// Enum for the variations of game status'.
+/// </summary>
+public enum GameStatus
 {
-    public enum GameStatus
-    {
-        Started,
-        Stopped
-    }
+    Started,
+    Stopped
 }

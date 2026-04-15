@@ -1,31 +1,24 @@
-﻿// -------------------------------------------------------------------------------------------------
-// MathGame.Models.Game
-// -------------------------------------------------------------------------------------------------
-// Represents both a Game object and a Game database entity.
-// -------------------------------------------------------------------------------------------------
-using MathGame.Enums;
+﻿using MathGame.Enums;
 using SQLite;
 
-namespace MathGame.Models
+namespace MathGame.Models;
+
+/// <summary>
+/// Represents both a Game object and a Game database entity.
+/// </summary>
+[Table("Game")]
+public class Game
 {
-    [Table("Game")]
-    public class Game
-    {
-        #region Properties
+    [PrimaryKey, AutoIncrement, Column("Id")]
+    public int Id { get; set; }
 
-        [PrimaryKey, AutoIncrement, Column("Id")]
-        public int Id { get; set; }
+    public GameType Type { get; set; }
 
-        public GameType Type { get; set; }
+    public int Score { get; set; }
 
-        public int Score { get; set; }
+    public DateTime DatePlayed { get; set; }
 
-        public DateTime DatePlayed { get; set; }
+    public GameDifficulty Difficulty { get; set; }
 
-        public GameDifficulty Difficulty { get; set; }
-
-        public double TimeTakenInSeconds { get; set; }
-
-        #endregion
-    }
+    public double TimeTakenInSeconds { get; set; }
 }
