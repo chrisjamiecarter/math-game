@@ -1,58 +1,49 @@
-﻿// -------------------------------------------------------------------------------------------------
-// MathGame.Console.Program
-// -------------------------------------------------------------------------------------------------
-// The insertion point of the console application.
-// -------------------------------------------------------------------------------------------------
-using MathGame.Console.Enums;
+﻿using MathGame.Console.Enums;
 using MathGame.Console.Utilities;
 using MathGame.Console.Views;
 using MathGame.Data;
 
-namespace MathGame.Console
+namespace MathGame.Console;
+
+internal static class Program
 {
-    internal class Program
+    private static readonly DateTime _date = DateTime.Now;
+    private static MathGameDataManager? _dataManager;
+    private static GameStatus _status;
+
+    private static void Main(string[] args)
     {
-        #region Variables
+        var (parsedArgs, error) = ArgumentParser.Parse(args);
 
-        private static readonly DateTime _date = DateTime.Now;
-        private static MathGameDataManager? _dataManager;
-        private static GameStatus _status;
-
-        #endregion
-        #region Methods: Private Static
-
-        private static void Main(string[] args)
+        if (error != null)
         {
-            var databaseFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"math-game.db");
-            _dataManager = new MathGameDataManager(databaseFilePath);
-            
-            string? name = GetName();
-            
-            var menu = new Menu(_dataManager);
-
-            _status = GameStatus.Started;
-            
-            while (_status != GameStatus.Stopped)
-            {
-                _status = menu.Show(name, _date);
-                
-            }
-
-            // Close the application.
-            Environment.Exit(1);
+            System.Console.WriteLine(error);
+            System.Console.WriteLine(ArgumentParser.GetUsage());
+            Environment.Exit(-1);
         }
 
-        #endregion
-        #region Methods: Internal Static
+        var databaseFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"math-game.db");
+        _dataManager = new MathGameDataManager(databaseFilePath);
 
-        internal static string? GetName()
+        string? name = parsedArgs.Name ?? GetName();
+
+        var menu = new Menu(_dataManager);
+
+        _status = GameStatus.Started;
+
+        while (_status != GameStatus.Stopped)
         {
-            System.Console.WriteLine("Please type your name: ");
-
-            var name = UserInputReader.GetString(false);
-            return name;
+            _status = menu.Show(name, _date, parsedArgs.GameDifficulty, parsedArgs.QuestionCount);
         }
 
-        #endregion
+        Environment.Exit(1);
+    }
+
+    internal static string? GetName()
+    {
+        System.Console.WriteLine("Please type your name: ");
+
+        var name = UserInputReader.GetString(false);
+        return name;
     }
 }

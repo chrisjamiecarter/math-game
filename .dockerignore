@@ -1,27 +1,28 @@
+# Build output
+**/bin/
+**/obj/
+
 # Git
-**/.git
-**/.gitignore
+.git/
+.gitignore
 
-# Build outputs
-**/bin
-**/obj
+# IDE folders
+.vs/
+.vscode/
+.idea/
 
-# IDE
-**/.vs
-**/.vscode
-**/*.user
-**/*.suo
+# Docker files themselves
+Dockerfile
+.dockerignore
+docker-compose*.yml
 
-# Docker
-**/Dockerfile*
-**/docker-compose*
-**/.dockerignore
+# OS files
+.DS_Store
+Thumbs.db
 
-# Documentation
-**/README.md
-**/LICENSE
+# Logs
+*.log
 
-# Media
-**/*.png
-**/*.jpg
-**/*.svg
+# User-specific files
+*.user
+*.suo

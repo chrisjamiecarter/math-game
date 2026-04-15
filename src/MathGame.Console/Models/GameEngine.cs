@@ -30,7 +30,7 @@ namespace MathGame.Console.Models
         #endregion
         #region Methods: Internal
 
-        internal void PlayGame(GameType gameType)
+        internal void PlayGame(GameType gameType, GameDifficulty? gameDifficulty, int? questionCount)
         {
             int score = 0;
             var timeTaken= new TimeSpan();
@@ -38,24 +38,17 @@ namespace MathGame.Console.Models
             System.Console.Clear();
             System.Console.WriteLine($"{gameType} game");
             System.Console.WriteLine("--------------------");
-
-            System.Console.WriteLine("Please select a difficulty: ");
-            System.Console.WriteLine("1 - Easy ");
-            System.Console.WriteLine("2 - Normal ");
-            System.Console.WriteLine("3 - Hard ");
             
-            var gameDifficulty = UserInputReader.GetGameDifficulty();
+            var selectedGameDifficulty = gameDifficulty ?? UserInputReader.GetGameDifficulty();
 
-            System.Console.WriteLine("Please enter amount of questions (1-20): ");
+            var selectedQuestionCount = questionCount ?? UserInputReader.GetQuestionCount();
 
-            var questionCount = UserInputReader.GetInt(1, 20);
-
-            List<Question> questions = QuestionEngine.GenerateQuestions(gameType, gameDifficulty, questionCount);
+            List<Question> questions = QuestionEngine.GenerateQuestions(gameType, selectedGameDifficulty, selectedQuestionCount);
                                    
             foreach (Question question in questions)
             {
                 System.Console.Clear();
-                System.Console.WriteLine($"{gameType} game: {gameDifficulty}");
+                System.Console.WriteLine($"{gameType} game: {selectedGameDifficulty} ({question.Id}/{questions.Count})");
                 System.Console.WriteLine("--------------------");
 
                 System.Console.WriteLine(question);
@@ -89,7 +82,7 @@ namespace MathGame.Console.Models
                 DatePlayed = DateTime.Now,
                 Score = score,
                 Type = gameType,
-                Difficulty = gameDifficulty,
+                Difficulty = selectedGameDifficulty,
                 TimeTakenInSeconds = timeTaken.TotalSeconds
             });
         }
