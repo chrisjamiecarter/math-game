@@ -17,9 +17,17 @@ Choose your operation, difficulty level, and number of questions to start sharpe
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Running the Application](#running-the-application)
+  - [Running with Command-Line Arguments (Optional - Console application only)](#running-with-command-line-arguments-optional---console-application-only)
+    - [Usage](#usage)
+    - [Arguments](#arguments)
+    - [Examples](#examples)
   - [Docker Container](#docker-container)
     - [Building the Container](#building-the-container)
     - [Running the Container](#running-the-container)
+  - [Running with Command-Line Arguments (Optional)](#running-with-command-line-arguments-optional)
+    - [Usage](#usage-1)
+    - [Arguments](#arguments-1)
+    - [Examples](#examples-1)
     - [Notes](#notes)
 - [Requirements](#requirements)
   - [Math Game](#math-game)
@@ -28,7 +36,7 @@ Choose your operation, difficulty level, and number of questions to start sharpe
     - [Challenges](#challenges-1)
 - [Features](#features)
 - [Technologies](#technologies)
-- [Usage](#usage)
+- [Usage](#usage-2)
   - [Console](#console)
   - [MAUI](#maui)
 - [How It Works](#how-it-works)
@@ -68,6 +76,36 @@ OR
     dotnet run --project ./src/MathGame.Maui
     ```
 
+### Running with Command-Line Arguments (Optional - Console application only)
+
+You can pass command-line arguments to bypass interactive prompts:
+
+#### Usage
+```bash
+MathGame.Console.exe [-n <name>] [-q <questions>] [-d <difficulty>]
+```
+
+#### Arguments
+
+```bash
+-n, --name        Player name (optional)
+-q, --questions   Number of questions 1-100 (optional)
+-d, --difficulty  Difficulty level: 1=Easy, 2=Normal, 3=Hard (optional)
+```
+
+#### Examples
+
+```bash
+# Run with player name only
+dotnet run --project ./src/MathGame.Console -n PlayerName
+
+# Run with player name, question count and difficulty.
+dotnet run --project ./src/MathGame.Console -n PlayerName -q 10 -d 3
+
+# Run with fully qualified arg names.
+dotnet run --project ./src/MathGame.Console --name PlayerName --questions 10 --difficulty 3
+```
+
 ### Docker Container
 
 This section explains how to run the Math Game console application inside a Docker container.
@@ -94,6 +132,37 @@ OR
    ```
 
 3. The application will start and prompt for your name. Enter your name to begin playing!
+
+### Running with Command-Line Arguments (Optional)
+
+You can pass command-line arguments to bypass interactive prompts:
+
+#### Usage
+
+```bash
+MathGame.Console.exe [-n <name>] [-q <questions>] [-d <difficulty>]
+```
+
+#### Arguments
+
+```bash
+-n, --name        Player name (optional)
+-q, --questions   Number of questions 1-100 (optional)
+-d, --difficulty  Difficulty level: 1=Easy, 2=Normal, 3=Hard (optional)
+```
+
+#### Examples
+
+```bash
+# Run with player name only
+docker run -it --rm mathgame:latest -n PlayerName
+
+# Run with player name, question count and difficulty.
+docker run -it --rm mathgame:latest -n PlayerName -q 10 -d 3
+
+# Run with fully qualified arg names.
+docker run -it --rm mathgame:latest --name PlayerName --questions 10 --difficulty 3
+```
 
 #### Notes
 
